@@ -5,10 +5,23 @@
 //  Created by Field Employee on 4/10/20.
 //  Copyright © 2020 Field Employee. All rights reserved.
 //
-
+var todoItems = [ToDoItem]()
 import UIKit
 
-class ViewController: UITableViewController {
+class ViewController: UITableViewController, UpdateLabelTextDelegate {
+    
+    internal var todoItems = [ToDoItem]()
+ 
+    
+    
+    
+    
+    func updateLabelText(withText text: String) {
+//        todoItems[0].title = "test"
+//        todoItems[IndexPath.row]
+//        tableView.reloadData()
+    }
+    
 
     override func viewDidLoad()
     {
@@ -52,7 +65,7 @@ class ViewController: UITableViewController {
                    }
                }
     }
-    private var todoItems = [ToDoItem]()
+
 
        override func numberOfSections(in tableView: UITableView) -> Int
        {
@@ -118,27 +131,32 @@ class ViewController: UITableViewController {
            self.present(alert, animated: true, completion: nil)
        }
 
-       private func addNewToDoItem(title: String)
+       internal func addNewToDoItem(title: String)
        {
            // The index of the new item will be the current item count
            let newIndex = todoItems.count
 
            // Create new item and add it to the todo items list
            todoItems.append(ToDoItem(title: title))
-
+            
            // Tell the table view a new row has been created
            tableView.insertRows(at: [IndexPath(row: newIndex, section: 0)], with: .top)
        }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
-          {
-              if indexPath.row < todoItems.count
-              {
-                  todoItems.remove(at: indexPath.row)
-                  tableView.deleteRows(at: [indexPath], with: .top)
-              }
-          }
-    
+    //No delete function
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+//          {
+//              if indexPath.row < todoItems.count
+//              {
+//                  todoItems.remove(at: indexPath.row)
+//                  tableView.deleteRows(at: [indexPath], with: .top)
+//              }
+//          }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "listReciever" || segue.identifier == "editReciever" {
+            let dest = segue.destination as! DetailBroadcaster
+            dest.delegate = self
+        }
+    }
     @objc
        public func applicationDidEnterBackground(_ notification: NSNotification)
        {
@@ -152,4 +170,5 @@ class ViewController: UITableViewController {
            }
        }
 }
+
 

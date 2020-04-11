@@ -12,12 +12,13 @@ class ToDoItem: NSObject, NSCoding
 {
     var title: String
     var done: Bool
-    // var date: Date
+//    var date: Date
     //var description: String
     public init(title: String)
     {
         self.title = title
         self.done = false
+//        self.date = date
         
     }
     required init?(coder aDecoder: NSCoder)
@@ -44,6 +45,12 @@ class ToDoItem: NSObject, NSCoding
                // Same problem as above
                return nil
            }
+//        if let date = aDecoder.decodeObject(forKey: "date") as? Date{
+//            self.date = date
+//        }
+//        else{
+//            return nil
+//        }
        }
 
        func encode(with aCoder: NSCoder)
@@ -51,22 +58,23 @@ class ToDoItem: NSObject, NSCoding
            // Store the objects into the coder object
            aCoder.encode(self.title, forKey: "title")
            aCoder.encode(self.done, forKey: "done")
+//           aCoder.encode(self.date, forKey: "date")
        }
 
 }
-extension ToDoItem
-{
-    public class func getMockData() -> [ToDoItem]
-    {
-        return [
-            ToDoItem(title: "Milk"),
-            ToDoItem(title: "Chocolate"),
-            ToDoItem(title: "Light bulb"),
-            ToDoItem(title: "Dog food")
-        ]
-    }
-    
-}
+//extension ToDoItem
+//{
+//    public class func getMockData() -> [ToDoItem]
+//    {
+//        return [
+//            ToDoItem(title: "Milk"),
+//            ToDoItem(title: "Chocolate"),
+//            ToDoItem(title: "Light bulb"),
+//            ToDoItem(title: "Dog food")
+//        ]
+//    }
+//
+//}
 // Creates an extension of the Collection type (aka an Array),
 // but only if it is an array of ToDoItem objects.
 extension Collection where Iterator.Element == ToDoItem
