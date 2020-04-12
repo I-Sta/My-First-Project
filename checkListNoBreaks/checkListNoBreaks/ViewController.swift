@@ -17,7 +17,7 @@ class ViewController: UITableViewController, UpdateLabelTextDelegate {
     
     
     func updateLabelText(withText text: String) {
-//        todoItems[0].title = "test"
+        todoItems[0].title = "test"
 //        todoItems[IndexPath.row]
 //        tableView.reloadData()
     }
@@ -142,15 +142,15 @@ class ViewController: UITableViewController, UpdateLabelTextDelegate {
            // Tell the table view a new row has been created
            tableView.insertRows(at: [IndexPath(row: newIndex, section: 0)], with: .top)
        }
-    //No delete function
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
-//          {
-//              if indexPath.row < todoItems.count
-//              {
-//                  todoItems.remove(at: indexPath.row)
-//                  tableView.deleteRows(at: [indexPath], with: .top)
-//              }
-//          }
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+                {
+                    if indexPath.row < todoItems.count
+                    {
+                        todoItems.remove(at: indexPath.row)
+                        tableView.deleteRows(at: [indexPath], with: .top)
+                    }
+                }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "listReciever" || segue.identifier == "editReciever" {
             let dest = segue.destination as! DetailBroadcaster

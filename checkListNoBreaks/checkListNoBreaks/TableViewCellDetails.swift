@@ -33,15 +33,6 @@ class TableViewCellDetails: UITableViewCell, UpdateLabelTextDelegate {
         
         
     }
-//     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-//     { todoItems[indexPath.row].title = update
-//    }
-    
-    
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
+
 
 }
